@@ -1,0 +1,95 @@
+<dom-module id="photo-block">
+    <style>
+    :host {
+        display: block;
+    }
+
+    .photo-wrapper {
+        height: 200px;
+    }
+
+    .gallery-dialog,
+    .gallery-dialog > * {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+    }
+
+    .navbar-overlay {
+        position: fixed !important;
+        background: rgba(0, 0, 0, 0.5) !important;
+        text-transform: uppercase;
+        z-index: 9;
+        color: #fff;
+    }
+
+    .open-photos {
+        background: rgba(0, 0, 0, .3);
+        color: #fff;
+        font-size: 21px;
+        opacity: 0;
+        transition: opacity .3s;
+    }
+
+    .open-photos:hover {
+        opacity: 1;
+    }
+
+    @media (min-width: 768px) {
+        .photo-wrapper {
+            height: 500px;
+        }
+        .big {
+            flex: 2;
+        }
+    }
+    </style>
+    <template>
+        <div class="photo-wrapper layout horizontal">
+            <div class="flex relative big">
+                <iron-image src="{{photos.big}}" class="placeholder-color fit" sizing="cover" preload fade></iron-image>
+                <div class="open-photos layout vertical center-center fit pointer">
+                     <a href="https://plus.google.com/events/gallery/ctc1n6o9dhnr4jj186svg90v5dg" target="_blank">
+                        Clique para ver mais fotos
+                    </a>
+                </div>
+            </div>
+            <div class="flex layout vertical">
+                <div class="flex relative">
+                    <iron-image src="{{photos.small.0}}" class="placeholder-color fit" sizing="cover" preload fade></iron-image>
+                    <div class="open-photos layout vertical center-center fit pointer">
+                       <span>
+                            <a href="https://plus.google.com/events/gallery/ctc1n6o9dhnr4jj186svg90v5dg" target="_blank">
+                                Clique para ver mais fotos
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <div class="flex relative hidden-xs">
+                    <iron-image src="{{photos.small.1}}" class="placeholder-color fit" sizing="cover" preload fade></iron-image>
+                    <div class="open-photos layout vertical center-center fit pointer">
+                        <span>
+                            <a href="https://plus.google.com/events/gallery/ctc1n6o9dhnr4jj186svg90v5dg" target="_blank">
+                                Clique para ver mais fotos
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</dom-module>
+<script>
+Polymer({
+    is: 'photo-block',
+    properties: {
+        photos: Object
+    },
+    attached: function() {
+        this.photos = {
+            big: '../images/backgrounds/devfestgoias2015-1.jpg',
+            small: ['../images/backgrounds/devfestgoias2015-2.jpg', '../images/backgrounds/devfestgoias2015-3.jpg']
+        };
+    }
+});
+</script>
